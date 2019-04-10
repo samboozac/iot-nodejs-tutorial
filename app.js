@@ -3,11 +3,11 @@
 //------------------------------------------------------------------------------
 // node.js starter application for Bluemix
 //------------------------------------------------------------------------------
-
+// Comment
 // This application uses express as its web server
 // for more info, see: http://expressjs.com
 var express = require('express');
-// bodyp-parse helps to send http requests 
+// bodyp-parse helps to send http requests
 // for more info, see: https://github.com/expressjs/body-parser
 var bodyParser = require('body-parser');
 
@@ -38,11 +38,11 @@ app.use('/scripts', express.static(__dirname + '/node_modules/'));
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();
 
-// this iot service credentials 
+// this iot service credentials
 var iotCredentials;
 
 /**
- * @attention 
+ * @attention
  * iot-raspberrypi is the IoT platform service name in this example, you should replace it with yours
  */
 var iotPlatformServiceName = 'iot-raspberrypi';
@@ -60,9 +60,9 @@ if (!baseConfig || Object.keys(baseConfig).length === 0) {
     if (entry.name === iotPlatformServiceName) {
       iotCredentials = entry;
     }
-  })  
-} 
-/**VCAP_SERVICES stored in Bluemix, its JSON format is different than VCAP_SERVICES. 
+  })
+}
+/**VCAP_SERVICES stored in Bluemix, its JSON format is different than VCAP_SERVICES.
 */
 else {
   iotCredentials = baseConfig[iotPlatformServiceName];
@@ -84,7 +84,7 @@ var appClient = new Client(iotAppConfig);
 appClient.connect();
 console.log("Successfully connected to our IoT service!");
 
-// subscribe to input events 
+// subscribe to input events
 appClient.on("connect", function () {
   console.log("subscribe to input events");
   appClient.subscribeToDeviceEvents("raspberrypi");
@@ -101,7 +101,7 @@ appClient.on("deviceEvent", function(deviceType, deviceId, eventType, format, pa
   }
   else {
     console.log('Got other events of ' + eventType + ' from ' + deviceId + ':' + JSON.stringify(payload));
-  } 
+  }
 });
 
 app.get('/sensordata', raspberryPiServer.returnCurrentSensorData(motionSensorData));
