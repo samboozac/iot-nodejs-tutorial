@@ -4,7 +4,6 @@ applications:
   instances: 1
   domain: eu-gb.mybluemix.net
   name: iot-nodejs-tutorial
-  host: iot-nodejs-tutorial
   disk_quota: 1024M
   services:
   - HookUpPi
